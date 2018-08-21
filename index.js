@@ -1,10 +1,10 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 3000
+var express =require('express')
+var app= express();
 
-express()
-  // .use(express.static(path.join(__dirname, 'public')))
-  // .set('views', path.join(__dirname, 'views'))
-  // .set('view engine', 'ejs')
-  .get('/', (req, res) => res.send('pDB API live'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.get('/',{
+	res.send('papp db api live');
+});
+
+app.listen('3000',function(err,res){
+	if(!err) console.log('Success');
+})
