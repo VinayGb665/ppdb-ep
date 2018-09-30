@@ -13,6 +13,11 @@ express()
    .use(bodyParser.urlencoded({    
     extended: true
     }))
+   .use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    })
    .get('/', (req, res) => {
    		res.send('Live')
 
@@ -24,11 +29,11 @@ express()
    })
    
    .post('/signup',(req,res) => {
-      //console.log(req.body);
+     
       services.signup(req,res);
    })
    .post('/login',(req,res) => {
-    //console.log(req.body);
+    
     services.login(req,res);
  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
