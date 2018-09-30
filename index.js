@@ -16,7 +16,9 @@ express()
 
    })
    
-   .post('/signup')
+   .get('/signup',(req,res) => {
+      res.send('Holler UP');
+   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
