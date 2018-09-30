@@ -8,4 +8,11 @@ var formDataSchema = new mongoose.Schema({
 	email :String,
 	score_gpa: String
 },{ collection: 'formData' });
+var studentSchema =	new new mongoose.Schema({
+	usn : String,
+	name :String,
+	email :String,
+	password :String
+},{ collection: 'user' });
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
+module.exports.studentModel = mongoose.model('studentData',studentSchema);
