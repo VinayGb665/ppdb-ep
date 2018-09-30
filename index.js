@@ -17,7 +17,7 @@ express()
    })
    
    .get('/signup',(req,res) => {
-      res.send('Holler UP');
+      services.signup(req,res);
    })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
