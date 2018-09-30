@@ -14,7 +14,9 @@ express()
    .get('/formdata',(req,res) => {
    		services.getFormData(req,res);
 
-   })   
+   })
+   
+   .post('/signup')
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
