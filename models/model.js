@@ -8,7 +8,7 @@ var formDataSchema = new mongoose.Schema({
 	email :String,
 	score_gpa: String
 },{ collection: 'formData' });
-var studentSchema =	new new mongoose.Schema({
+var studentSchema =	new mongoose.Schema({
 	usn : String,
 	name :String,
 	email :String,
