@@ -8,7 +8,7 @@ let services ={
 		});
 	},
 	signup : (req,res) =>{
-		res.send(req);
+		res.send(req.body);
 	}
 
 
