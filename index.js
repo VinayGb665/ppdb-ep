@@ -13,7 +13,7 @@ express()
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');  
   });
    .use( bodyParser.json())
    .use(bodyParser.urlencoded({    
@@ -34,12 +34,13 @@ express()
       services.signup(req,res);
    })
    .post('/login',(req,res) => {
-        res.header("Access-Control-Allow-Origin", '*');
-    		res.header("Access-Control-Allow-Credentials", true);
-    		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    		res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+        res.setHeader("Access-Control-Allow-Origin", '*');
+    		res.setHeader("Access-Control-Allow-Credentials", true);
+    		res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    		res.setHeader("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 			
-    services.login(req,res);
+        var result=services.login(req,res);
+        res.json({"pass":result})
  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

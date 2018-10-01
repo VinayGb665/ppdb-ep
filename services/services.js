@@ -43,14 +43,9 @@ let services ={
 		stuModel.findOne({"usn":data.usn},function(err,results){
 			//res.setHeader("Access-Control-Allow-Origin", "*");
 			//res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-			res.header("Access-Control-Allow-Origin", '*');
-    		res.header("Access-Control-Allow-Credentials", true);
-    		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    		res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 			if(err) res.send(err);
 			
-			if(results.hasOwnProperty("password")) res.json(results);
-			else res.json({"smd":true});
+			else return hash==results.password;
 		});
 		
 	},
