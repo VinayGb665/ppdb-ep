@@ -41,9 +41,10 @@ let services ={
 		var hash = services.md5(data.password+data.usn.toString().substr(data.usn.length -3));
 
 		stuModel.findOne({"usn":data.usn},function(err,results){
-			if(err) res.send(err);
-			res.setHeader("Access-Control-Allow-Origin", "*");
+			res.setHeader("Access-Control-Allow-Origin", "localhost:*");
 			res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+			
+			if(err) res.send(err);
 			var pass =results.password;
 			res.json({"pass":true});
 		});
