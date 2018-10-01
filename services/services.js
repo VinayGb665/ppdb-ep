@@ -42,7 +42,7 @@ let services ={
 
 		stuModel.findOne({"usn":data.usn},function(err,results){
 			if(err) res.send(err);
-			res.header("Access-Control-Allow-Origin", "*,null");
+			res.setHeader("Access-Control-Allow-Origin", "*");
 			res.send(req.origin);
 		});
 		
