@@ -49,7 +49,7 @@ let services ={
 			//res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 			if(err) res.send(err);
 			
-			if(results.hasOwnProperty("password")) res.send(true);
+			if(results !=null && results.hasOwnProperty("password")) res.send(true);
 			else res.send(true);
 		});
 		
