@@ -44,7 +44,7 @@ let services ={
 			if(err) res.send(err);
 			res.setHeader("Access-Control-Allow-Origin", "*");
 			res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-			res.send(results.password==hash);
+			res.send("pppppppppppppppppppppppppp");
 		});
 		
 	},
