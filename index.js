@@ -34,7 +34,7 @@ express()
   res.setHeader("Access-Control-Allow-Headers", "*");
  	
         var result=services.login(req,res);
-        res.send("true");
+        res.send(result);
  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

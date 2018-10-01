@@ -49,7 +49,7 @@ let services ={
     		res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 			if(err) res.send(err);
 			
-			if(results.hasOwnProperty("password")) return (results);
+			if(results.hasOwnProperty("password")) return "true";
 			else return ({"smd":true});
 		});
 		
