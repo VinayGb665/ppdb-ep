@@ -10,7 +10,6 @@ express()
   // .set('views', path.join(__dirname, 'views'))
   // .set('view engine', 'ejs')
    .use( bodyParser.json()) 
-   .use(allowCrossDomain)
    .all('*', function(req, res, next) {
     var origin = req.get('origin'); 
     
