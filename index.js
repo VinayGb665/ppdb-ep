@@ -3,13 +3,14 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const services=require('./services/services');
 var bodyParser = require('body-parser')
-
+var cors =require('cors')
 
 express()
   // .use(express.static(path.join(__dirname, 'public')))
   // .set('views', path.join(__dirname, 'views'))
   // .set('view engine', 'ejs')
-   .use( bodyParser.json()) 
+   .use( bodyParser.json())
+   .use(cors()) 
    .all('*', function(req, res, next) {
     var origin = req.get('origin'); 
     

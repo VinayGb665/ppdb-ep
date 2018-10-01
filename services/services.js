@@ -42,16 +42,8 @@ let services ={
 
 		stuModel.findOne({"usn":data.usn},function(err,results){
 			if(err) res.send(err);
-			
-			if(results.password==hash){
-				res.setHeader("Access-Control-Allow-Origin", "*");
-				res.send("OK");
-			}
-			else{
-				res.setHeader("Access-Control-Allow-Origin", "*");	
-				res.send("false");
-			}
-			
+			//res.setHeader("Access-Control-Allow-Origin", "*");
+			res.send(results.password==hash);
 		});
 		
 	},
