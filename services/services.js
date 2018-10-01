@@ -18,6 +18,11 @@ let services ={
 			data.password = services.md5(data.password+data.usn.substr(data.usn.length-3));
 			
 			stuModel.find({"usn":data.usn},function(err,results){
+				res.setHeader("Access-Control-Allow-Origin", "*");
+  				res.setHeader('Access-Control-Allow-Methods', '*');
+  				res.setHeader("Access-Control-Allow-Headers", "*");
+ 			
+
 				if(err) res.send(err);
 				
 				if(results.length==0){
@@ -44,13 +49,9 @@ let services ={
 			res.setHeader("Access-Control-Allow-Origin", "*");
   			res.setHeader('Access-Control-Allow-Methods', '*');
   			res.setHeader("Access-Control-Allow-Headers", "*");
- 	
-			//res.setHeader("Access-Control-Allow-Origin", "*");
-			//res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-			if(err) res.send(err);
-			
+ 			if(err) res.send(err);
 			if(results) res.send(results.password==hash);
-			else res.send(results);
+			else res.send("error");
 		});
 		
 	},
