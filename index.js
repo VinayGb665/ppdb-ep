@@ -30,8 +30,8 @@ express()
    .post('/login',(req,res) => {
 
   
-        var result=services.login(req,res);
-        res.send(result);
+        services.login(req,res);
+        //res.send(result);
  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
