@@ -18,7 +18,7 @@ express()
       next();
     })
    .get('/', (req, res) => {
-   		res.send('Live')
+   		res.sendFile(__dirname+'/test.html');
 
    })
 
