@@ -43,7 +43,13 @@ let services ={
 		stuModel.findOne({"usn":data.usn},function(err,results){
 			if(err) res.send(err);
 			res.setHeader("Access-Control-Allow-Origin", "*");
-			res.send("asjgadsk");
+			if(results.password==hash){
+				res.send("true");
+			}
+			else{
+				res.send("false");
+			}
+			
 		});
 		
 	},
