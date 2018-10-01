@@ -33,8 +33,8 @@ express()
   res.setHeader('Access-Control-Allow-Methods', '*');
   res.setHeader("Access-Control-Allow-Headers", "*");
  	
-        services.login(req,res);
-        //res.json({"pass":result})
+        var result=services.login(req,res);
+        res.json({"pass":result})
  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
