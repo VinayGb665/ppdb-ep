@@ -35,10 +35,9 @@ express()
       services.signup(req,res);
    })
    .post('/login',(req,res) => {
-        res.setHeader("Access-Control-Allow-Origin", '*');
-    		res.setHeader("Access-Control-Allow-Credentials", true);
-    		res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    		res.setHeader("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+        res.setHeader("Access-Control-Allow-Origin", '(https?://(?:.+\.)?mywebsite\.com(?::\d{1,5})?)$');
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.setHeader("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 			
         //var result=services.login(req,res);
         res.json({"pass":result})
