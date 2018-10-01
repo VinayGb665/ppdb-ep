@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Website</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+a{
+text-decoration:none;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		font-size:20px;
+		position:relative;
+		top:500px;
+		left:800px;
+}
+body{
+
+
+	background-color:#dddddd;	background-size:cover;
+}
+#signup{
+
+		position:absolute;
+		top:10%;
+		left:40%;
+		min-height:150px;
+		width:20%;
+		border-radius:12px;
+		
+	}
+	#signup input{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		font-size:20px;
+		display:block;
+		height:40px;
+		width:320px;
+		padding-left:15px;	
+		margin:auto;
+		margin-top:7%;
+		margin-bottom:7%;
+		
+		border:1px solid transparent;
+		
+		border-radius:5px;	
+		transition:width 0.6s;
+		
+	}
+	#signup input:focus{
+		width:400px;
+	}
+	#butt{
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		font-size:21px;
+		position:absolute;
+		top:140px;
+		left:82px;
+		z-index:999;
+		width:150px;
+		height:40px;
+		border:1px solid transparent;
+		border-radius:3px;
+		background-color:rgba(214, 204, 193, 0.39);
+	}
+	#butt:hover{
+		background:rgba(179, 168, 193, 0.75);
+		transition:ease-in 0.5s;
+	}
+	h1{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+	font-size:40px;
+	font-weight:lighter;
+	color:#676692;
+	}
+	#container{
+	position:absolute;
+	top:300px;
+	left:750px;
+	
+	}
+	#container h1{
+	position:relative;
+	top:-80px;
+	left:140px;}
+	#message{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	position:relative;
+	left:30px;
+	color:#de5252;
+	top:-8px;
+	font-size:16px;
+	width:1000px;
+	
+	}
+	</style>
+	<script>
+	function validate(){
+	
+    
+	var y = document.forms["details"]["usn"].value;
+	var z = document.forms["details"]["pass"].value;
+	if (z == null || z == "") {
+       	document.getElementsByTagName('div')[2].innerHTML="email?";
+		return false;
+    }
+	if(y==null || y==""){
+		document.getElementsByTagName('div')[2].innerHTML="pass?";
+		return false;
+	}
+	else{
+		
+		$.post("http://ppdb-ep.herokuapp.com/login",{
+	"usn": y,
+	"email" : "kys",
+	"password" : z
+},function (data) {
+	console.log("sdsd",data)
+		//	if(!err) {
+				if(data==true){
+					console.log("sdsd")
+					/*
+
+
+						Do
+						Some 
+						UI shit
+						here
+						like 
+						 |	
+						 |
+						 |
+						\ /	
+						 |	
+					*/
+					document.getElementsByTagName('div')[2].innerHTML="Done go";
+		//		}
+			}
+		//	else console.log(err);
+		});
+		return false;
+	}
+
+	
+	/*var e=document.getElementsByTagName('input');
+	if(e[2].value==null ){document.getElementById('message').innerHtml="Hey Dont you have a first name??";return false; }
+	else if(e[1].value==null){document.getElementById('message').innerHtml="Hey man ..Look you need an email";return false;}
+	else if(e[2].value!=e[3].value){document.getElementById('message').innerHtml="Confirm pass means enter the same as pass";return false;}
+	else{return true;}
+	
+	*/
+	}
+	
+	
+	</script>
+</head>
+<body  >
+<div id="container"><h1 ><center>Sign In</center></h1>
+
+<div id="signup">
+
+<form   name="details" >
+<!--	<input type="text" pattern="[^ @]*@[^ @]*" placeholder="Email Id" name="email" maxlength="52"></br></input> -->
+<input type="text"  placeholder="usn" name="usn" maxlength="52"></br></input>
+<input type="password" placeholder="Password" name="pass" maxlength="52"></br></input>
+<div id="message"></div>
+<button id="butt" onclick="return validate()">Go</button>
+</form>
+
+
+</div>
+</div>
+<a href="../../signup">Not A User?</a>
+</body>
+</body></html>
