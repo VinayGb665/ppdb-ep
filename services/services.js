@@ -46,7 +46,7 @@ let services ={
 			
 			if(err) res.send(err);
 			
-			res.json({"pass":true});
+			res.json(results);
 		});
 		
 	},
