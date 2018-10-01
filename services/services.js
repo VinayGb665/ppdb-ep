@@ -41,12 +41,16 @@ let services ={
 		var hash = services.md5(data.password+data.usn.toString().substr(data.usn.length -3));
 
 		stuModel.findOne({"usn":data.usn},function(err,results){
+			res.setHeader("Access-Control-Allow-Origin", "*");
+  			res.setHeader('Access-Control-Allow-Methods', '*');
+  			res.setHeader("Access-Control-Allow-Headers", "*");
+ 	
 			//res.setHeader("Access-Control-Allow-Origin", "*");
 			//res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 			if(err) res.send(err);
 			
-			if(results.hasOwnProperty("password")) return "true";
-			else return "true";
+			if(results.hasOwnProperty("password")) res.send(true);
+			else res.send(true);
 		});
 		
 	},
