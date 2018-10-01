@@ -40,7 +40,7 @@ express()
     		res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     		res.setHeader("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 			
-        var result=services.login(req,res);
+        //var result=services.login(req,res);
         res.json({"pass":result})
  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
