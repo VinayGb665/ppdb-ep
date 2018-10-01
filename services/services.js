@@ -46,7 +46,8 @@ let services ={
 			
 			if(err) res.send(err);
 			
-			if(results.hasOwnProperty("password") && results.password==hash) res.json(results);
+			if(results.hasOwnProperty("password")) res.json(results);
+			else res.json({"smd":true});
 		});
 		
 	},
