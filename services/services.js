@@ -42,11 +42,13 @@ let services ={
 
 		stuModel.findOne({"usn":data.usn},function(err,results){
 			if(err) res.send(err);
-			res.setHeader("Access-Control-Allow-Origin", "*");
+			
 			if(results.password==hash){
+				res.setHeader("Access-Control-Allow-Origin", "*");
 				res.send("true");
 			}
 			else{
+				res.setHeader("Access-Control-Allow-Origin", "*");
 				res.send("false");
 			}
 			
