@@ -9,23 +9,16 @@ express()
   // .use(express.static(path.join(__dirname, 'public')))
   // .set('views', path.join(__dirname, 'views'))
   // .set('view engine', 'ejs')
+  .use(function(req, res) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  });
    .use( bodyParser.json())
-   .use(cors()) 
-   .all('*', function(req, res, next) {
-    var origin = req.get('origin'); 
-    
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  })
    .use(bodyParser.urlencoded({    
     extended: true
     }))
-   .use(function(req, res, next) {
-      res.header("Access-Control-Allow-Origin", "*");
-      next();
-    })
    .get('/', (req, res) => {
    		res.sendFile(__dirname+'/test.html');
 
@@ -41,7 +34,11 @@ express()
       services.signup(req,res);
    })
    .post('/login',(req,res) => {
-    
+        res.header("Access-Control-Allow-Origin", '*');
+    		res.header("Access-Control-Allow-Credentials", true);
+    		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    		res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+			
     services.login(req,res);
  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
