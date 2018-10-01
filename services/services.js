@@ -45,10 +45,10 @@ let services ={
 			
 			if(results.password==hash){
 				res.setHeader("Access-Control-Allow-Origin", "*");
-				res.send("true");
+				res.send("OK");
 			}
 			else{
-				res.setHeader("Access-Control-Allow-Origin", "*");
+				res.setHeader("Access-Control-Allow-Origin", "*");	
 				res.send("false");
 			}
 			
