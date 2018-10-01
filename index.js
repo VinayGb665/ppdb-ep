@@ -9,7 +9,8 @@ express()
   // .use(express.static(path.join(__dirname, 'public')))
   // .set('views', path.join(__dirname, 'views'))
   // .set('view engine', 'ejs')
-   .use( bodyParser.json())     
+   .use( bodyParser.json()) 
+   .use(allowCrossDomain)
    .use(bodyParser.urlencoded({    
     extended: true
     }))
