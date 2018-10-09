@@ -14,5 +14,12 @@ var studentSchema =	new mongoose.Schema({
 	email :{type:String,required:true},
 	password :{type:String,required:true},
 },{ collection: 'user' });
+var studentSchema =	new mongoose.Schema({
+	usn : {type:String,required:true},
+	name :{type:String,required:true},
+	email :{type:String,required:true},
+	password :{type:String,required:true},
+},{ collection: 'user' });
+
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
 module.exports.studentModel = mongoose.model('studentData',studentSchema);

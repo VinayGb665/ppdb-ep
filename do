@@ -1,3 +1,3 @@
-git add .
-git commit -m "123"
+git add services/services.js
+git commit -m "cred-cors"
 git push heroku master

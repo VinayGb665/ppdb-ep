@@ -1,2 +1,4 @@
-"node_modules/" 
-**/*.csv
+node_modules/*
+/*.csv
+Untitled.ipynb
+Untitled.ipynb
