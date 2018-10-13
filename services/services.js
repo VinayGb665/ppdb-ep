@@ -60,7 +60,7 @@ let services ={
 		return crypto.createHash('md5').update(string).digest('hex');
 	},
 	getcompdata :(req,res) =>{
-		compModel.find({},function(err,results){
+		compModel.find({},{"_id":0},function(err,results){
 			res.send(results);
 		})
 	}
