@@ -38,7 +38,8 @@ express()
  })
 
    .get('/compdata',(req,res) => {
-      res.send('Ok coming ')
+      //res.send('Ok coming ')
+      services.getcompdata(req,res);
    })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

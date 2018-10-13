@@ -20,6 +20,15 @@ var studentSchema =	new mongoose.Schema({
 	email :{type:String,required:true},
 	password :{type:String,required:true},
 },{ collection: 'user' });
+var companySchema = new mongoose.Schema({
+	Name:{type:String,required:true},
+	address:{type:String,required:true},
+	GPA : {type:String,required:true},
+	JD : {type:String,required:true},
+	JobStatus : {type:String,required:true},
+	Compensation : {type:String,required:true}
+},{collection:'placement'});
 
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
 module.exports.studentModel = mongoose.model('studentData',studentSchema);
+module.exports.compModel = mongoose.model('compData',companySchema);

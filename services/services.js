@@ -3,6 +3,7 @@
 const models =require('../models/model')
 let formModel =models.formModel;
 let stuModel =models.studentModel;
+let compModel =models.compModel;
 var crypto = require('crypto');
 
 
@@ -57,6 +58,11 @@ let services ={
 	},
 	md5 :(string) =>{
 		return crypto.createHash('md5').update(string).digest('hex');
+	},
+	getcompdata :(req,res) =>{
+		compModel.find({},function(err,results){
+			res.send(results);
+		})
 	}
 
 
