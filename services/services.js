@@ -44,7 +44,7 @@ let services ={
 	},
 	login : (req,res) =>{
 		var data = req.body;
-		if(data.usn && data.password){
+		if(!data.usn || !data.password){
 		var hash = services.md5(data.password+data.usn.toString().substr(data.usn.length -3));
 
 		stuModel.findOne({"usn":data.usn},function(err,results){
