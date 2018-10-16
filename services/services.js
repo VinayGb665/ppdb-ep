@@ -57,7 +57,7 @@ let services ={
 		});
 	}
 	else{
-		res.send(400,data);
+		res.send(200,data);
 	}
 	},
 	md5 :(string) =>{
