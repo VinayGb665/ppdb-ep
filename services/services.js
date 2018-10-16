@@ -57,7 +57,7 @@ let services ={
 		});
 	}
 	else{
-		res.send(200,data);
+		res.send(200,"Wrong data format");
 	}
 	},
 	md5 :(string) =>{
