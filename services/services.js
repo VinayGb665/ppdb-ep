@@ -75,7 +75,7 @@ let services ={
 			});
 		}
 		else{
-			res.send(400,{data:"Invalid Input"})
+			res.send(422);
 		}
 	}	
 
