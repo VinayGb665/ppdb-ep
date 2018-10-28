@@ -49,7 +49,7 @@ express()
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
-    services.getcompdata(req,res);
+    services.getplacementdata(req,res);
    })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
