@@ -69,10 +69,15 @@ let services ={
 		})
 	},
 	getplacementdata :(req,res) =>{
-		formModel.find({},{_id:0,email:0,score_gpa:0},function(err,data){
-			if(!err) res.send(data);
-		});
-	}
+		if(req.query.usn){
+			formModel.find({usn:req.query.usn},{_id:0,email:0,score_gpa:0},function(err,data){
+				if(!err) res.send(data);
+			});
+		}
+		else{
+			res.send(400,{data:"Invalid Input"})
+		}
+	}	
 
 
 }
