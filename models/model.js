@@ -6,7 +6,10 @@ var formDataSchema = new mongoose.Schema({
 	usn : String,
 	name :String,
 	email :String,
-	score_gpa: String
+	score_gpa: String,
+	intern_status: Boolean,
+	fte_status : String,
+	blacklisted :Boolean
 },{ collection: 'formData' });
 var studentSchema =	new mongoose.Schema({
 	usn : {type:String,required:true},

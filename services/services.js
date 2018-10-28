@@ -67,6 +67,11 @@ let services ={
 		compModel.find({},{"_id":0},function(err,results){
 			res.send(results);
 		})
+	},
+	getplacementdata :(req,res) =>{
+		formModel.find({},{_id:0,email:0,score_gpa:0},function(err,data){
+			if(!err) res.send(data);
+		});
 	}
 
 

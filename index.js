@@ -39,11 +39,17 @@ express()
 
    .get('/compdata',(req,res) => {
       //res.send('Ok coming ')
-      res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
 
       services.getcompdata(req,res);
+   })
+   .get('/placement',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.getcompdata(req,res);
    })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
