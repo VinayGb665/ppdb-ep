@@ -70,7 +70,7 @@ let services ={
 	},
 	getplacementdata :(req,res) =>{
 		if(req.query.usn){
-			formModel.find({usn:{$regex:new RegExp(req.query.usn,"i")}},{_id:0,email:0,score_gpa:0},function(err,data){
+			formModel.find({usn:{$regex:new RegExp(req.query.usn,"i")}},{_id:0,__v:0,email:0,score_gpa:0},function(err,data){
 				if(!err) res.send(data);
 			});
 		}
