@@ -25,7 +25,7 @@ var studentSchema =	new mongoose.Schema({
 },{ collection: 'user' });
 var companySchema = new mongoose.Schema({
 	name :{type:String}
-},{strict:false},{collection:'placement'});
+},{strict:false,collection:'placement'});
 
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
 module.exports.studentModel = mongoose.model('studentData',studentSchema);
