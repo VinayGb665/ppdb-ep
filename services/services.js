@@ -85,7 +85,7 @@ let services ={
 		var comp = new compModel(req.body);
 		comp.save((err) => {
 			if(!err) res.send(true);
-			else res.send(false);
+			else res.send(err);
 		})
 
 	}
