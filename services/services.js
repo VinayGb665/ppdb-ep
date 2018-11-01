@@ -82,7 +82,12 @@ let services ={
 		}
 	},
 	addnewcompany : (req,res) =>{
-		res.send(new compModel(req.body));
+		var comp = new compModel(req.body);
+		comp.save((err) => {
+			if(!err) res.send(true);
+			else res.send(false);
+		})
+
 	}
 
 
