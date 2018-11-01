@@ -58,7 +58,7 @@ express()
     res.setHeader("Access-Control-Allow-Headers", "*");
     services.getplacementdata(req,res);
    })
-   .post('/addnewcomp',(Req,res) => {
+   .post('/addnewcomp',(req,res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
