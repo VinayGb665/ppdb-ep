@@ -80,7 +80,10 @@ let services ={
 		else{
 			res.send(422);
 		}
-	}	
+	},
+	addnewcompany : (req,res) =>{
+		res.send(new compModel(req.body));
+	}
 
 
 }

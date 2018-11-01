@@ -19,12 +19,19 @@ express()
    })
 
    .get('/formdata',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    
    		services.getFormData(req,res);
 
    })
    
    .post('/signup',(req,res) => {
-     
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    
       services.signup(req,res);
    })
    .post('/login',(req,res) => {
@@ -50,6 +57,12 @@ express()
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
     services.getplacementdata(req,res);
+   })
+   .post('/addnewcomp',(Req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.addnewcompany(req,res); 
    })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

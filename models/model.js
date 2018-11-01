@@ -30,7 +30,7 @@ var companySchema = new mongoose.Schema({
 	JD : {type:String,required:true},
 	JobStatus : {type:String,required:true},
 	Compensation : {type:String,required:true}
-},{collection:'placement'});
+},{strict: false,collection:'placement'});
 
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
 module.exports.studentModel = mongoose.model('studentData',studentSchema);
