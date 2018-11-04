@@ -4,8 +4,10 @@ const models =require('../models/model')
 let formModel =models.formModel;
 let stuModel =models.studentModel;
 let compModel =models.compModel;
+let tagModel =models.tagModel;
 var crypto = require('crypto');
-
+var async = require('async');
+const fs = require('fs');
 
 let services ={
 	getFormData : (req,res)=>{
@@ -89,6 +91,37 @@ let services ={
 			else res.send(err);
 		})
 
+	},
+	gettagdata : (req,res) => {
+		var data = req.query;
+		console.log(data);
+		tagModel.find({company:data.company,tags:{$in:[data.tags]}},
+			{_id:0,filename:1},
+			(err,results) => {
+				if(err) res.send(err)
+				else {
+					services.testAsync(res,results.map((u) => { return "CompanyInterviewExperience/"+u.filename;}));
+				}
+			});
+
+	},
+	renderFiles : (res,data) => {
+		res.send(services.testAsync(data));	
+
+	},
+	testAsync: (res,files) => {
+		
+		async.map(files, fs.readFile, function (err, data) {
+			if(err) console.log(err);
+			else{
+				var buf="";
+			for(var i = 0, l = data.length ; i < l ; i++) {
+				buf+="{"+data[i].toString()+"}\\n\\n";
+				console.log( data[i].toString(),data.length );
+			}
+			res.send(buf);
+		}});
+	
 	}
 
 

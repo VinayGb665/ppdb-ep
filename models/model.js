@@ -26,7 +26,14 @@ var studentSchema =	new mongoose.Schema({
 var companySchema = new mongoose.Schema({
 	name :{type:String}
 },{strict:false,collection:'placement'});
+var tagSchema = new mongoose.Schema({
+	filename :{type:String ,required:true},
+	company :{type:String ,required:true},
+	exp_num :{type:String },
+	tags:{type:[{type:String}],required:true,default:[]}
+},{collection:'tagData'});
 
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
 module.exports.studentModel = mongoose.model('studentData',studentSchema);
 module.exports.compModel = mongoose.model('compData',companySchema);
+module.exports.tagModel = mongoose.model('tagData',tagSchema);

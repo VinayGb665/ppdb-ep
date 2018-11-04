@@ -10,13 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.6.1",
     "body-parser": "^1.18.3",
+    "config-yml": "^0.10.2",
     "cors": "^2.8.4",
     "crypto": "^1.0.1",
     "csvtojson": "^2.0.8",
     "expect": "^23.5.0",
     "express": "^4.16.3",
+    "gridfs-stream": "^1.1.1",
     "mongoose": "^5.2.9",
+    "mongoose-gridfs": "^0.5.0",
     "npm": "^6.4.0",
     "sinon": "^6.1.5"
   }

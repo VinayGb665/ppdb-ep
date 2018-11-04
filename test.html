@@ -97,25 +97,25 @@ body{
 	
     
 	var y = document.forms["details"]["usn"].value;
-	var z = document.forms["details"]["pass"].value;
-	if (z == null || z == "") {
-       	document.getElementsByTagName('div')[2].innerHTML="email?";
-		return false;
-    }
+	// var z = document.forms["details"]["pass"].value;
+	// if (z == null || z == "") {
+    //    	document.getElementsByTagName('div')[2].innerHTML="email?";
+	// 	return false;
+    // }
 	if(y==null || y==""){
 		document.getElementsByTagName('div')[2].innerHTML="pass?";
 		return false;
 	}
 	else{
 		
-		$.post("http://ppdb-ep.herokuapp.com/login",{
+		$.get("http://ppdb-ep.herokuapp.com/placement",{
 	"usn": y,
-	"password" : z
+	
 },function (data) {
-	console.log("sdsd",data)
+
 		//	if(!err) {
-				if(data==true){
-					console.log("sdsd")
+				if(data){
+					console.log(data[0].fte_status);
 					/*
 
 
@@ -159,7 +159,6 @@ body{
 <form   name="details" >
 <!--	<input type="text" pattern="[^ @]*@[^ @]*" placeholder="Email Id" name="email" maxlength="52"></br></input> -->
 <input type="text"  placeholder="usn" name="usn" maxlength="52"></br></input>
-<input type="password" placeholder="Password" name="pass" maxlength="52"></br></input>
 <div id="message"></div>
 <button id="butt" onclick="return validate()">Go</button>
 </form>

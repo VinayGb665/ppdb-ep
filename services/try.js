@@ -1,44 +1,54 @@
-var message = "";
-var sinon = require('sinon');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+mongoose.connect('mongodb://127.0.0.1/test');
+var conn = mongoose.connection;
+ 
 var fs = require('fs');
-var expect = require('expect');
-promise1 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        message += "my";
-        resolve(message);
-    }, 2000)
-})
-
-promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        message += " first";
-        resolve(message);
-    }, 3000)
-})
-
-promise3 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        message += " promise";
-        resolve(message);
-    }, 4000)
-})
-
-var printResult = (results) => {console.log("Results = ", results, "message = ", message)}
-
-function main() {
-    // See the order of promises. Final result will be according to it
-    //Promise.all([promise1, promise2, promise3]).then(printResult);
-    Promise.all([promise2, promise1, promise3]).then(printResult);
-    //Promise.all([promise3, promise2, promise1]).then(printResult);
-    console.log("\"\"" + message);
+ 
+var Grid = require('gridfs-stream');
+Grid.mongo = mongoose.mongo;
 
 
-}
+callpo = (req,res) => {
+    console.log("came");
+    conn.once('open', function () {
+    console.log('open');
+    var gfs = Grid(conn.db);
+    
+ /*
+  
+           var writestream = gfs.createWriteStream({
+                filename: items[i]
+            });
+            fs.createReadStream('CompanyInterviewExperience/'+items[i]).pipe(writestream);
+         
+            writestream.on('close', function (file) {
+                console.log(file.filename + 'Written To DB');
+            });
+            
+*/
+buf="";
 
-main();
-var writeFileStub = sinon.stub(fs, 'writeFile').callsFake(function (path, data, cb) {  
-  return cb(null)
-})
-
-//expect(writeFileStub).to.be.called
-writeFileStub.restore()
+gfs.files.find({filename:"abco_1.txt"},{}).toArray((err,files)=>{
+    console.log(files)
+    var readstream = gfs.createReadStream({
+        filename: files[0].filename
+    });
+    res.writeHead(200, {
+        "Content-Type": files[0].contentType
+    });
+    readstream.on('data',(chunk) => {
+        buf+=chunk;
+       // console.log('done');
+    })
+   readstream.on('end',() =>{
+       console.log("Done ",buf)
+   })
+});
+           
+            
+//res.send("pppooop");             
+    
+});
+} 
+module.exports.callpo=callpo;

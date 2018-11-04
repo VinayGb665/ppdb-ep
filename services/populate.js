@@ -1,3 +1,68 @@
+'use strict';
+
+const fs = require('fs');
+const models =require('../models/model');
+let tagModel = models.tagModel;
+let rawdata = fs.readFileSync(__dirname+'/tagging/scraped_data_info/revised_tags.json');  
+let student = JSON.parse(rawdata);  
+for(var doc of student.tags){
+    console.log(doc.company);
+    var tagEntry={};
+    for(var key in doc){
+        tagEntry[key] = doc[key]
+    }
+    console.log(tagEntry.company);
+    tagEntry =new tagModel(tagEntry);
+   
+    tagEntry.save((err,data) => {
+        if(err) console.log("Fuked UP",err,tagEntry);
+        else console.log("done",doc.company);
+    });
+    
+    //break;
+    
+}
+
+/*
+/// -------------------------------------------------  Populating Experience data (Uploading) --
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://heroku_7rl6zx62:9llvcjkd2m40q80u3f2r5dn6hu@ds229732.mlab.com:29732/heroku_7rl6zx62');
+var conn = mongoose.connection;
+ 
+var fs = require('fs');
+ 
+var Grid = require('gridfs-stream');
+Grid.mongo = mongoose.mongo;
+
+
+conn.once('open', function () {
+    console.log('open');
+    var gfs = Grid(conn.db);
+ 
+    fs.readdir('CompanyInterviewExperience', function(err, items) {
+        for(i=0;i<items.length;i++){
+           var writestream = gfs.createWriteStream({
+                filename: items[i]
+            });
+            fs.createReadStream('CompanyInterviewExperience/'+items[i]).pipe(writestream);
+         
+            writestream.on('close', function (file) {
+                console.log(file.filename + 'Written To DB');
+            });
+            
+            
+            
+           
+        }         
+    });
+        
+    
+});
+
+/// -------------------------------------------------------------------------------- 
+*/
+/*
 const csvFilePath='./betamap.csv'
 const csv=require('csvtojson')
 const models =require('../models/model')
@@ -29,6 +94,7 @@ csv()
 }).then(()=>{
 	console.log('Done bois');
 });
+*/
 /*
 var mockArray =[{
     "Name":"Whatfix",
