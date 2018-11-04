@@ -94,7 +94,7 @@ let services ={
 	},
 	gettagdata : (req,res) => {
 		var data = req.query;
-		console.log(data);
+		//	console.log(data);
 		if(data.company && data.tags){
 			var query={company:data.company,tags:{$in:[data.tags]}}
 		}
@@ -129,7 +129,7 @@ let services ={
 				var buf="";
 			for(var i = 0, l = data.length ; i < l ; i++) {
 				buf+="{"+data[i].toString()+"}\\n\\n";
-				console.log( data[i].toString(),data.length );
+				//console.log( data[i].toString(),data.length );
 			}
 			res.send(buf);
 		}});
