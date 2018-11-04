@@ -105,9 +105,8 @@ let services ={
 			var query={tags:{$in:[data.tags]}}
 		}
 		else{
-			var query ={}
+			var query = {};
 		}
-		
 		tagModel.find(query,
 			{_id:0,filename:1},
 			(err,results) => {
@@ -116,8 +115,7 @@ let services ={
 					services.testAsync(res,results.map((u) => { return "CompanyInterviewExperience/"+u.filename;}));
 				}
 			});
-		}
-		
+
 	},
 	renderFiles : (res,data) => {
 		res.send(services.testAsync(data));	
