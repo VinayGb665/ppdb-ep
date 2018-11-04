@@ -32,8 +32,14 @@ var tagSchema = new mongoose.Schema({
 	exp_num :{type:String },
 	tags:{type:[{type:String}],required:true,default:[]}
 },{collection:'tagData'});
+var empSchema = new mongoose.Schema({
+	username : {type:String,required:true},
+	password : {type:String,required:true},
+	isAdmin : {type:Boolean,required:true}	
+},{collection:"employee"});
 
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
 module.exports.studentModel = mongoose.model('studentData',studentSchema);
 module.exports.compModel = mongoose.model('compData',companySchema);
 module.exports.tagModel = mongoose.model('tagData',tagSchema);
+module.exports.empModel = mongoose.model('empData',empSchema);

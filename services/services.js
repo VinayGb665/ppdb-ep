@@ -5,6 +5,7 @@ let formModel =models.formModel;
 let stuModel =models.studentModel;
 let compModel =models.compModel;
 let tagModel =models.tagModel;
+let empmodel =models.empModel;
 var crypto = require('crypto');
 var async = require('async');
 const fs = require('fs');
@@ -134,6 +135,30 @@ let services ={
 			res.send(buf);
 		}});
 	
+	},
+	emplogin : (req,res) => {
+		var data =req.body;
+		if(data.password && data.username){
+			var hash = services.md5(data.password+data.username);
+			empmodel.findOne({username:data.username},function(err,results){
+				if(err || results.length==0){
+					res.send(JSON.parse({"status":"error"}));
+				}
+				else{
+					if(results.password==hash){
+						res.send({"status":"success","isAdmin":results.isAdmin});
+					}
+					else{
+						res.send({"status":"failed"})
+					}
+					
+				}
+			})
+		}
+		else{
+			res.send(422);
+		}
+
 	}
 
 
