@@ -95,7 +95,19 @@ let services ={
 	gettagdata : (req,res) => {
 		var data = req.query;
 		console.log(data);
-		tagModel.find({company:data.company,tags:{$in:[data.tags]}},
+		if(data.company && data.tags){
+			var query={company:data.company,tags:{$in:[data.tags]}}
+		}
+		else if(data.company){
+			var query={company:data.company}
+		}
+		else if(data.tags){
+			var query={tags:{$in:[data.tags]}}
+		}
+		else{
+			res.send(422);
+		}
+		tagModel.find(query,
 			{_id:0,filename:1},
 			(err,results) => {
 				if(err) res.send(err)
