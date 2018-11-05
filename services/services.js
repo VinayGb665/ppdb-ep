@@ -162,13 +162,22 @@ let services ={
 	updateStudentStatus : (req,res) => {
 		var data = req.body;
 		if(data.usn ) {
-			formModel.update({usn:{'$regex' : '^'+data.usn+'$', '$options' : 'i'}},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},function(err){
+			formModel.update({usn:{'$regex' : '^'+data.usn+'$', '$options' : 'i'}},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},true,function(err){
 				if(!err) res.send({"status":"success"})
 				else res.send({"status":err});
 			})
 		}
+	},
+	listemployeees : (req,res) => {
+		empmodel.find({},(err,results){
+			if(!err) res.send(err)
+			else res.send(results);
+		})
+	},
+	addemployee : (req,res) => {
+		var empdoc =new empModel(req.body);
+		//empdoc.save((er))
 	}
-
 
 }
 module.exports =services;
