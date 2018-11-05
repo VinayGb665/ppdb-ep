@@ -170,7 +170,7 @@ let services ={
 	},
 	listemployeees : (req,res) => {
 		empmodel.find({},(err,results) => {
-			if(!err) res.send(err);
+			if(err) res.send(err);
 			else res.send(results);
 		});
 	},
