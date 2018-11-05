@@ -141,7 +141,7 @@ let services ={
 		if(data.password && data.username){
 			var hash = services.md5(data.password+data.username);
 			empmodel.findOne({username:data.username},function(err,results){
-				if(err || results.length==0){
+				if(err || !results){
 					res.send(JSON.parse({"status":"error"}));
 				}
 				else{
