@@ -181,7 +181,7 @@ let services ={
 		
 		empdoc =new empmodel(empdoc);
 		console.log(empdoc);
-		empdoc.save((err) => {
+		empdoc.save((err,results) => {
 			if(!err) return({"status":"success"})
 			else return (err);
 		})
