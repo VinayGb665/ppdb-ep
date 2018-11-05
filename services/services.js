@@ -142,7 +142,7 @@ let services ={
 			var hash = services.md5(data.password+data.username);
 			empmodel.findOne({username:data.username},function(err,results){
 				if(err || !results){
-					res.send(JSON.parse({"status":"error"}));
+					res.send({"status":"error"});
 				}
 				else{
 					if(results.password==hash){
