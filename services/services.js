@@ -175,7 +175,7 @@ let services ={
 		});
 	},
 	addemployee : (req,res) => {
-		var empdoc =new empModel(req.body);
+		var empdoc =new empmodel(req.body);
 		var hash = md5(empdoc.password+empdoc.username);
 		empdoc.password=hash;
 		empdoc.save((err) => {
