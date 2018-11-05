@@ -162,7 +162,7 @@ let services ={
 	},
 	updateStudentStatus : (req,res) => {
 		var data = req.body;
-		if(data.name && data.email && data.company)
+		if(data.name && data.email && data.company) break;
 	}
 
 
