@@ -164,7 +164,7 @@ let services ={
 		if(data.usn ) {
 			formModel.update({usn:data.usn},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},function(err){
 				if(!err) res.send({"status":"success"})
-				else res.send({"status":"error"});
+				else res.send({"status":err});
 			})
 		}
 	}
