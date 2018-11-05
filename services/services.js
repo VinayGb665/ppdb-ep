@@ -1,4 +1,4 @@
-'use strict';
+
 
 const models =require('../models/model')
 let formModel =models.formModel;
