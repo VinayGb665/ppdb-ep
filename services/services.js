@@ -162,7 +162,7 @@ let services ={
 	updateStudentStatus : (req,res) => {
 		var data = req.body;
 		if(data.usn ) {
-			formModel.update({usn:data.usn},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},function(err){
+			formModel.update({usn:{'$regex' : '^'+data.usn+'$', '$options' : 'i'}},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},function(err){
 				if(!err) res.send({"status":"success"})
 				else res.send({"status":err});
 			})
