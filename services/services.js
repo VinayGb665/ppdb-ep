@@ -175,9 +175,11 @@ let services ={
 		});
 	},
 	addemployee : (req,res) => {
-		var empdoc =new empmodel(req.body);
-		var hash = services.md5(empdoc.password+empdoc.username);
+		var empdoc=req.body;
+		var hash = services.md5(req.body.password+req.body.username);
 		empdoc.password=hash;
+		empdoc =new empmodel(empdoc);
+		
 		empdoc.save((err) => {
 			if(!err) return({"status":"success"})
 			else return (err);
