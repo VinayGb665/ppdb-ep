@@ -159,6 +159,10 @@ let services ={
 			res.send(422);
 		}
 
+	},
+	updateStudentStatus : (req,res) => {
+		var data = req.body;
+		if(data.name && data.email && data.company)
 	}
 
 

@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 5000
 const services=require('./services/services');
 var bodyParser = require('body-parser')
 var cors =require('cors')
-var troy =require('./services/try')
+
 express()
   // .use(express.static(path.join(__dirname, 'public')))
   // .set('views', path.join(__dirname, 'views'))
