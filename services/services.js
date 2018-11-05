@@ -129,8 +129,7 @@ let services ={
 			else{
 				var buf="";
 			for(var i = 0, l = data.length ; i < l ; i++) {
-				buf+="{"+data[i].toString()+"}\\n\\n";
-				//console.log( data[i].toString(),data.length );
+				buf+="{"+data[i].toString()+"}";
 			}
 			res.send(buf);
 		}});
@@ -162,7 +161,12 @@ let services ={
 	},
 	updateStudentStatus : (req,res) => {
 		var data = req.body;
-		if(data.name && data.email && data.company) {}
+		if(data.usn ) {
+			formModel.update({usn:data.usn},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},function(err,res){
+				if(!err) res.send({"status":"success"})
+				else res.send({"status":"error"});
+			})
+		}
 	}
 
 
