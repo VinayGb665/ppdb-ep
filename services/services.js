@@ -167,7 +167,7 @@ let services ={
 				else res.send({"status":err});
 			})
 		}
-	},
+	}/*,
 	listemployeees : (req,res) => {
 		empmodel.find({},(err,results){
 			if(!err) res.send(err);
@@ -178,6 +178,6 @@ let services ={
 		var empdoc =new empModel(req.body);
 		//empdoc.save((er))
 	}
-
+*/
 }
 module.exports =services;
