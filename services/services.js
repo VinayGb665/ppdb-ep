@@ -167,17 +167,20 @@ let services ={
 				else res.send({"status":err});
 			})
 		}
-	}/*,
+	},
 	listemployeees : (req,res) => {
-		empmodel.find({},(err,results){
+		empmodel.find({},(err,results) => {
 			if(!err) res.send(err);
 			else res.send(results);
 		});
 	},
 	addemployee : (req,res) => {
 		var empdoc =new empModel(req.body);
-		//empdoc.save((er))
+		empdoc.save((err) => {
+			if(!err) return({"status":"success"})
+			else return (err);
+		})
 	}
-*/
+
 }
 module.exports =services;

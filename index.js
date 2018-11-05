@@ -82,6 +82,18 @@ express()
     res.setHeader("Access-Control-Allow-Headers", "*");
     services.emplogin(req,res);
    })
+   .get('/listemp',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.listemployeees(req,res);
+   })
+   .post('/addemp',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.addemployee(req,res);
+   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
