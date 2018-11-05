@@ -178,8 +178,9 @@ let services ={
 		var empdoc=req.body;
 		var hash = services.md5(req.body.password+req.body.username);
 		empdoc.password=hash;
-		empdoc =new empmodel(empdoc);
 		
+		empdoc =new empmodel(empdoc);
+		console.log(empdoc);
 		empdoc.save((err) => {
 			if(!err) return({"status":"success"})
 			else return (err);
