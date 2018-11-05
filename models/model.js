@@ -10,7 +10,7 @@ var formDataSchema = new mongoose.Schema({
 	intern_status: Boolean,
 	fte_status : String,
 	blacklisted :Boolean
-},{ collection: 'formData' });
+},{strict:false, collection: 'formData' });
 var studentSchema =	new mongoose.Schema({
 	usn : {type:String,required:true},
 	name :{type:String,required:true},
