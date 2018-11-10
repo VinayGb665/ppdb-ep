@@ -88,6 +88,13 @@ express()
     res.setHeader("Access-Control-Allow-Headers", "*");
     services.listemployeees(req,res);
    })
+   .get('/listcomp',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.listcomps(req,res);
+   })
+   
    .post('/addemp',(req,res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', '*');

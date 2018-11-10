@@ -185,6 +185,12 @@ let services ={
 			if(!err) res.send({"status":"success"})
 			else res.send (err);
 		})
+	},
+	listcomps : (req,res) => {
+		tagModel.distinct('company',(err,comps){
+			if(!err) res.send(comps)
+			else res.send(err);
+		});
 	}
 
 }
