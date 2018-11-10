@@ -97,7 +97,7 @@ let services ={
 		var data = req.query;
 		//	console.log(data);
 		if(data.company && data.tags){
-			var query={company:data.company,tags:{$in:data.tags}}
+			var query={company:{$in:data.company},tags:{$in:data.tags}}
 		}
 		else if(data.company){
 			var query={company:data.company}
