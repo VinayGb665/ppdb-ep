@@ -2,8 +2,8 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const services=require('./services/services');
-const MongoStore = require('connect-mongo')(session);
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 var bodyParser = require('body-parser')
 var cors =require('cors')
 
