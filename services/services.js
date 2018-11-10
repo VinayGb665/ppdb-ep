@@ -187,7 +187,7 @@ let services ={
 		})
 	},
 	listcomps : (req,res) => {
-		tagModel.distinct('company',(err,comps){
+		tagModel.distinct('company',(err,comps) => {
 			if(!err) res.send(comps)
 			else res.send(err);
 		});
