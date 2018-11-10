@@ -37,9 +37,11 @@ var empSchema = new mongoose.Schema({
 	password : {type:String,required:true},
 	isAdmin : {type:Boolean,required:true}	
 },{collection:"employee"});
+var templateSchema = new mongoose.Schema({},{strict:false,collection:'formTemplates'});
 
 module.exports.formModel = mongoose.model('FormData',formDataSchema);
 module.exports.studentModel = mongoose.model('studentData',studentSchema);
 module.exports.compModel = mongoose.model('compData',companySchema);
 module.exports.tagModel = mongoose.model('tagData',tagSchema);
 module.exports.empModel = mongoose.model('empData',empSchema);
+module.exports.tempModel = mongoose.model('tempData',templateSchema);

@@ -4,11 +4,13 @@ const PORT = process.env.PORT || 5000
 const services=require('./services/services');
 var bodyParser = require('body-parser')
 var cors =require('cors')
+var session = require('express-session');
 
 express()
   // .use(express.static(path.join(__dirname, 'public')))
   // .set('views', path.join(__dirname, 'views'))
   // .set('view engine', 'ejs')
+   .use(session({secret: 'og-pineapple-kush'}))
    .use( bodyParser.json())
    .use(bodyParser.urlencoded({    
     extended: true
@@ -94,12 +96,31 @@ express()
     res.setHeader("Access-Control-Allow-Headers", "*");
     services.listcomps(req,res);
    })
+   .get('/listtags',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.listtags(req,res);
+   })
    
    .post('/addemp',(req,res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
     services.addemployee(req,res);
+   })
+   .post('/savetemplate', (req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.saveTemplate(req,res); 
+   })
+   
+   .post('/gettemplate', (req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    services.getTemplate(req,res); 
    })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

@@ -6,10 +6,11 @@ let stuModel =models.studentModel;
 let compModel =models.compModel;
 let tagModel =models.tagModel;
 let empmodel =models.empModel;
+let tempmodel =models.tempModel;
 var crypto = require('crypto');
 var async = require('async');
 const fs = require('fs');
-
+var sess
 let services ={
 	getFormData : (req,res)=>{
 		formModel.find({},{_id:0},function(err,data){
@@ -55,7 +56,13 @@ let services ={
   			res.setHeader('Access-Control-Allow-Methods', '*');
   			res.setHeader("Access-Control-Allow-Headers", "*");
  			if(err) res.send(err);
-			if(results) res.send(results.password==hash);
+			if(results) {
+				if(results.password==hash){
+					sess=req.session;
+					sess.email=results.email;
+					res.send(true);
+				};
+			}
 			else res.send("error");
 		});
 	}
@@ -145,6 +152,9 @@ let services ={
 				}
 				else{
 					if(results.password==hash){
+						sess =req.session;
+						sess.employee = true;
+						sess.isAdmin=results.isAdmin;
 						res.send({"status":"success","isAdmin":results.isAdmin});
 					}
 					else{
@@ -191,7 +201,29 @@ let services ={
 			if(!err) res.send(comps)
 			else res.send(err);
 		});
+	},
+	listtags : (req,res) => {
+		tagModel.distinct('tags',(err,tags) =>{
+			if(!err) res.send(tags)
+			else res.send(err);
+		})
+	},
+	saveTemplate : (req,res) => {
+		var doc =new tempmodel(req.body);
+		doc.save((err,results) =>{
+			if(!err) res.send('True');
+			else res.send(err);
+		});
+	},
+	getTemplate : (req,res) =>{
+		var company=req.company;
+		tempmodel.find({'company':company},(err,results) => {
+			if(!err) res.send(results)
+			else res.send(err)
+		})
 	}
+
+
 
 }
 module.exports =services;
