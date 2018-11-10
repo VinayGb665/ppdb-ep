@@ -2,15 +2,22 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const services=require('./services/services');
+const MongoStore = require('connect-mongo')(session);
+const session = require('express-session');
 var bodyParser = require('body-parser')
 var cors =require('cors')
-var session = require('express-session');
+
+
 
 express()
   // .use(express.static(path.join(__dirname, 'public')))
   // .set('views', path.join(__dirname, 'views'))
   // .set('view engine', 'ejs')
-   .use(session({secret: 'og-pineapple-kush'}))
+  // .use(session({}))
+   .use(session({
+    store: new MongoStore({ url: process.env.MONGODB_URI }),
+    secret: 'og-pineapple-kush'
+    }))
    .use( bodyParser.json())
    .use(bodyParser.urlencoded({    
     extended: true
