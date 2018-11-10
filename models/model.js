@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const url =  "mongodb://heroku_7rl6zx62:9llvcjkd2m40q80u3f2r5dn6hu@ds229732.mlab.com:29732/heroku_7rl6zx62";
-mongoose.connect(url,{useCreateIndex: true, useNewUrlParser: true });
+mongoose.connect(url,{useCreateIndexes: true, useNewUrlParser: true });
 
 var formDataSchema = new mongoose.Schema({
 	usn : String,
