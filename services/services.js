@@ -171,11 +171,18 @@ let services ={
 	},
 	updateStudentStatus : (req,res) => {
 		var data = req.body;
-		if(data.usn ) {
-			formModel.update({usn:data.usn.toString().toUpperCase()},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},{upsert:true},function(err){
-				if(!err) res.send({"status":"success"})
-				else res.send({"status":err});
-			})
+		sess = req.session;
+		if(sess.isAdmin){
+			
+			if(data.usn ) {
+				formModel.update({usn:data.usn.toString().toUpperCase()},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},{upsert:true},function(err){
+					if(!err) res.send({"status":"success"})
+					else res.send({"status":err});
+				})
+			}
+		}
+		else{
+			res.send(401)
 		}
 	},
 	listemployeees : (req,res) => {
@@ -185,17 +192,23 @@ let services ={
 		});
 	},
 	addemployee : (req,res) => {
-		var empdoc=req.body;
-		var hash = services.md5(req.body.password+req.body.username);
-		empdoc.password=hash;
-		
-		empdoc =new empmodel(empdoc);
-		console.log(empdoc);
-		empdoc.save((err,results) => {
-			if(!err) res.send({"status":"success"})
-			else res.send (err);
-		})
-	},
+		sess = req.session;
+		if(sess.isAdmin){
+			var empdoc=req.body;
+			var hash = services.md5(req.body.password+req.body.username);
+			empdoc.password=hash;
+			
+			empdoc =new empmodel(empdoc);
+			console.log(empdoc);
+			empdoc.save((err,results) => {
+				if(!err) res.send({"status":"success"})
+				else res.send (err);
+			})
+		}
+		else{
+			res.send(401,'Unauthorized');
+		}
+},
 	listcomps : (req,res) => {
 		tagModel.distinct('company',(err,comps) => {
 			if(!err) res.send(comps)
