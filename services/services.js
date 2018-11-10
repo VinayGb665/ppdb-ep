@@ -7,6 +7,7 @@ let compModel =models.compModel;
 let tagModel =models.tagModel;
 let empmodel =models.empModel;
 let tempmodel =models.tempModel;
+let formrespmodel = models.formrespModel;
 var crypto = require('crypto');
 var async = require('async');
 const fs = require('fs');
@@ -234,7 +235,27 @@ let services ={
 			if(!err) res.send(results)
 			else res.send(err)
 		})
+	},
+	saveformresponse : (req,res) => {
+		var doc = new formrespmodel(req.body);
+		doc.save((err,results) => {
+			if(!err) res.send({"status":"success"})
+			else res.send(err);
+		});
+	},
+	getformresponses : (req,res) => {
+		sess =req.session;
+		if(sess.isAdmin){
+			formrespmodel.find({"company":req.body.company}, (err,results) => {
+				if(!err) res.send(results)
+				else res.send(err)
+			});
+		}
+		else{
+			res.send(401);
+		}
 	}
+
 
 
 
