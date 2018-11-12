@@ -230,7 +230,7 @@ let services ={
 		});
 	},
 	getTemplate : (req,res) =>{
-		var company=req.company;
+		var company=req.query.company;
 		tempmodel.find({'company':company},(err,results) => {
 			if(!err) res.send(results)
 			else res.send(err)
