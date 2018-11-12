@@ -224,7 +224,7 @@ let services ={
 	},
 	saveTemplate : (req,res) => {
 		var doc =new tempmodel(req.body);
-		tempmodel.findOneAndUpdate({company:doc.company},doc,{upsert: true, new: true, runValidators: true},(err,results) =>{
+		tempmodel.findOneAndUpdate({company:doc.company},req.body,{upsert: true, new: true, runValidators: true},(err,results) =>{
 			if(!err) res.send('True');
 			else res.send(err);
 		});
