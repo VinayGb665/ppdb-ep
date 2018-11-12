@@ -246,7 +246,7 @@ let services ={
 	getformresponses : (req,res) => {
 		sess =req.session;
 		if(sess.isAdmin){
-			formrespmodel.find({"company":req.body.company}, (err,results) => {
+			formrespmodel.findOne({"company":req.body.company}, (err,results) => {
 				if(!err) res.send(results)
 				else res.send(err)
 			});
