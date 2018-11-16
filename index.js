@@ -4,6 +4,9 @@ const PORT = process.env.PORT || 5000
 const services=require('./services/services');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+var multipart = require('connect-multiparty');
+var multipartMiddleware=multipart();
+
 var bodyParser = require('body-parser')
 var cors =require('cors')
 
@@ -22,6 +25,7 @@ express()
    .use(bodyParser.urlencoded({    
     extended: true
     }))
+    .use(multipartMiddleware)
    .get('/', (req, res) => {
    		res.sendFile(__dirname+'/test.html');
 
@@ -129,6 +133,12 @@ express()
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader("Access-Control-Allow-Headers", "*");
     services.getTemplate(req,res); 
+   })
+   .post('/updateprofile',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");     
+    services.updateprofile(req,res);
    })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

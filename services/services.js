@@ -11,6 +11,12 @@ let formrespmodel = models.formrespModel;
 var crypto = require('crypto');
 var async = require('async');
 const fs = require('fs');
+const {Storage} = require('@google-cloud/storage');
+const gcs = new Storage({
+       keyFilename: 'seventh-carport-195914-89a6e0348a9c.json'
+});
+var bucket = gcs.bucket('abcra');
+
 var sess
 let services ={
 	getFormData : (req,res)=>{
@@ -254,6 +260,28 @@ let services ={
 		else{
 			res.send(401);
 		}
+	},
+	updateprofile : (req,res) => {
+		//console.log(req.files);
+		var newfname = services.md5(req.files.resume.originalFilename+req.usn)
+		fs.writeFile(newfname+".pdf", req.files.resume,function(err){
+			if(err) throw new Error(err);
+		});
+
+		bucket.upload(newfname+".pdf",(err,file) => {
+			if(!err) {
+				var formd = req.body;
+				formd.fhash = newfname;
+				formModel.findOneAndUpdate({usn:req.body.usn},formd,{upsert: false, new: true, runValidators: true},(err,results) =>{
+					if(!err) res.send('True'); 
+					else res.send(err);
+				});
+			
+			}
+			else res.send(err);
+			
+		})
+
 	}
 
 
