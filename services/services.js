@@ -253,9 +253,10 @@ let services ={
 		var doc = new formrespmodel(req.body);
 		doc.save((err,results) => {
 			if(!err) {
-				formModel.updateOne({usn:doc.usn},{$push:{registered:doc.company}},(err,result){
+				formModel.updateOne({usn:doc.usn},{$push:{registered:doc.company}},(err,result) => {
 					if(!err) res.send({"status":"success"});
 					else res.send(err);
+					
 				});
 				
 			}
