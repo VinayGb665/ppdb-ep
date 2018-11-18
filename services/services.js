@@ -252,7 +252,13 @@ let services ={
 	saveformresponse : (req,res) => {
 		var doc = new formrespmodel(req.body);
 		doc.save((err,results) => {
-			if(!err) res.send({"status":"success"})
+			if(!err) {
+				formModel.updateOne({usn:doc.usn},{$push:{registered:doc.company}},(err,result){
+					if(!err) res.send({"status":"success"});
+					else res.send(err);
+				});
+				
+			}
 			else res.send(err);
 		});
 	},
@@ -280,7 +286,9 @@ let services ={
 				var formd = req.body;
 				formd.fhash = newfname;
 				formModel.findOneAndUpdate({usn:req.body.usn},formd,{upsert: false, new: true, runValidators: true},(err,results) =>{
-					if(!err) res.send('True'); 
+					if(!err) { 
+							res.send('True'); 
+					}
 					else res.send(err);
 				});
 			
