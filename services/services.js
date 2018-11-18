@@ -301,11 +301,10 @@ let services ={
 			query.tags ={in:data.tags};
 		}
 		if(data.college){
-			query.college=data.college;
+			query.College=data.college;
 		}
 		console.log(query)
 		expModel.find(query,
-			{_id:0},
 			(err,results) => {
 				if(err) res.send(err)
 				else {
