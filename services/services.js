@@ -295,7 +295,7 @@ let services ={
 		var query = {}
 		//	console.log(data);
 		if(data.company){
-			query.company={$in:data.comany};
+			query.company=data.company;
 		}
 		if(data.tags){
 			query.tags ={in:data.tags};
@@ -303,6 +303,7 @@ let services ={
 		if(data.college){
 			query.college=data.college;
 		}
+		console.log(query)
 		expModel.find(query,
 			{_id:0},
 			(err,results) => {
