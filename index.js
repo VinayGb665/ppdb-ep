@@ -152,6 +152,12 @@ express()
     res.setHeader("Access-Control-Allow-Headers", "*");     
     services.updateprofile(req,res);
    })
+   .get('/getexpdata',(req,res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");     
+    services.getexpdata(req,res);
+   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 

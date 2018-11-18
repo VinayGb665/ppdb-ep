@@ -1,3 +1,77 @@
+const models =require('../models/model')
+const fs =require('fs');
+var csv=require('csvtojson')
+let formEntry =models.formModel;
+let compEntry =models.compModel;
+let expEntry = models.expModel;
+fte_arr=["T3","T2","T1","Hanging in there"];
+fs.readdir('services/experience',(err,items) => {
+    for(i=0;i<items.length;i++){
+        var csvFilePath=__dirname+'/experience/'+items[i]
+        var name = items[i]
+        
+         csv()
+        .fromFile(csvFilePath)
+
+
+        .then((jsonObj)=>{
+            
+            jsonObj.forEach((entry)=>{
+
+                 var doc={
+                     company: name.split(' - ')[1].split('.')[0],
+                     Date :entry.Date,
+                     "How man rounds of interview" :entry["How man rounds of interview"] ,
+                     tags: entry.Tags.split(","),
+                    "How would you rate the difficulty level of the questions asked ? (Across rounds)": entry["How would you rate the difficulty level of the questions asked ? (Across rounds)"],
+                    "As a student what would you like to see as a feature of the placement portal" : entry["As a student what would you like to see as a feature of the placement portal"]	,
+                    College :entry.College
+                 }
+                 var exp = new expEntry(doc);
+                 exp.save((err) => {
+                     if(!err) console.log("saved");
+                     else console.log(err);
+                 })
+
+            });
+            }
+        )
+
+console.log(items[i]);
+
+}});
+/*
+
+
+
+
+csv()
+.fromFile(csvFilePath)
+
+
+.then((jsonObj)=>{
+    jsonObj.forEach((entry)=>{
+        
+    	var doc={
+    		Date :entry.Date,
+	"How man rounds of interview" :entry["How man rounds of interview"] ,
+	tags: entry.tags//,
+	// "How would you rate the difficulty level of the questions asked ? (Across rounds)": {type:String},
+	// "As a student what would you like to see as a feature of the placement portal" : {type:String}	,
+	// College :{type:String}
+
+        }
+    console.log(doc);
+    // 	new formEntry(doc).save((err)=>{
+    // 		if(!err) console.log('Done')
+    // 	});
+    	
+    // });
+}).then(()=>{
+	console.log('Done bois');
+});
+
+/*
 'use strict';
 
 const fs = require('fs');
@@ -22,7 +96,7 @@ for(var doc of student.tags){
     //break;
     
 }
-
+*/
 /*
 /// -------------------------------------------------  Populating Experience data (Uploading) --
 

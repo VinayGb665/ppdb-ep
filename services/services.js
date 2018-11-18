@@ -288,6 +288,31 @@ let services ={
 			
 		})
 
+	},
+	getexpdata : (req,res) => {
+		var data = req.query;
+		//	console.log(data);
+		if(data.company && data.tags){
+			var query={company:{$in:data.company},tags:{$in:data.tags}}
+		}
+		else if(data.company){
+			var query={company:data.company}
+		}
+		else if(data.tags){
+			var query={tags:{$in:[data.tags]}}
+		}
+		else{
+			var query = {};
+		}
+		expModel.find(query,
+			{_id:0,filename:1},
+			(err,results) => {
+				if(err) res.send(err)
+				else {
+					res.send(results);
+				}
+			});
+
 	}
 
 

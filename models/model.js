@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const url =  process.env.MONGODB_URI;
-mongoose.connect(url,{useCreateIndexes: true, useNewUrlParser: true });
+mongoose.connect(url);
 
 var formDataSchema = new mongoose.Schema({
 	usn : String,
@@ -37,6 +37,15 @@ var empSchema = new mongoose.Schema({
 	password : {type:String,required:true},
 	isAdmin : {type:Boolean,required:true}	
 },{collection:"employee"});
+var expSchema = new mongoose.Schema({
+	company:String,
+	Date :{type: String},
+	"How man rounds of interview" : {type:String},
+	tags: {type:[{type:String}]},
+	"How would you rate the difficulty level of the questions asked ? (Across rounds)": {type:String},
+	"As a student what would you like to see as a feature of the placement portal" : {type:String}	,
+	College :{type:String}
+});
 var templateSchema = new mongoose.Schema({},{strict:false,collection:'formTemplates'});
 var formrespSchema = new mongoose.Schema({},{strict:false,collection:'formResponses'})
 
@@ -47,3 +56,4 @@ module.exports.tagModel = mongoose.model('tagData',tagSchema);
 module.exports.empModel = mongoose.model('empData',empSchema);
 module.exports.tempModel = mongoose.model('tempData',templateSchema);
 module.exports.formrespModel = mongoose.model('formrespData',formrespSchema);
+module.exports.expModel = mongoose.model('expData',expSchema);
