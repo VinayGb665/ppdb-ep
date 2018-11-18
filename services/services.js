@@ -21,7 +21,7 @@ var sess
 let services ={
 	getFormData : (req,res)=>{
 		if(req.query.usn){
-			var query = {usn :releaseEvents.query.usn}
+			var query = {usn :req.query.usn}
 		}
 		else{
 			var query={}
