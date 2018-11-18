@@ -265,15 +265,15 @@ let services ={
 	},
 	getformresponses : (req,res) => {
 		sess =req.session;
-		if(sess.isAdmin){
+	//	if(sess.isAdmin){
 			formrespmodel.findOne({"company":req.body.company}, (err,results) => {
 				if(!err) res.send(results)
 				else res.send(err)
 			});
-		}
-		else{
-			res.send(401);
-		}
+	//	}
+	//	else{
+	//		res.send(401);
+	//	}
 	},
 	updateprofile : (req,res) => {
 		//console.log(req.files);
