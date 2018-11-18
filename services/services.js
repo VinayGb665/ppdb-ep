@@ -20,7 +20,7 @@ var bucket = gcs.bucket('abcra');
 var sess
 let services ={
 	getFormData : (req,res)=>{
-		formModel.find({},{_id:0},function(err,data){
+		formModel.find({usn:req.query.usn},{_id:0},function(err,data){
 			if(!err) res.send(data);
 		});
 	},
