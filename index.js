@@ -158,6 +158,20 @@ express()
     res.setHeader("Access-Control-Allow-Headers", "*");     
     services.getexpdata(req,res);
    })
+   .post('/saveformresponse', (req,res) => {
+     
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");     
+    services.saveformresponse(req,res);
+   })
+   .get('/getformresponses', (req,res) => {
+     
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");     
+    services.getformresponses(req,res);
+   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
