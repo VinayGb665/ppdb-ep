@@ -6,6 +6,7 @@ let stuModel =models.studentModel;
 let compModel =models.compModel;
 let tagModel =models.tagModel;
 let empmodel =models.empModel;
+let expModel =models.expModel;
 let tempmodel =models.tempModel;
 let formrespmodel = models.formrespModel;
 var crypto = require('crypto');
