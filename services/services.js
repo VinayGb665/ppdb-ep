@@ -292,18 +292,16 @@ let services ={
 	},
 	getexpdata : (req,res) => {
 		var data = req.query;
+		var query = {}
 		//	console.log(data);
-		if(data.company && data.tags){
-			var query={company:{$in:data.company},tags:{$in:data.tags}}
+		if(data.company){
+			query.company={$in:data.comany};
 		}
-		else if(data.company){
-			var query={company:data.company}
+		if(data.tags){
+			query.tags ={in:data.tags};
 		}
-		else if(data.tags){
-			var query={tags:{$in:[data.tags]}}
-		}
-		else{
-			var query = {};
+		if(data.college){
+			query.college=data.college;
 		}
 		expModel.find(query,
 			{_id:0},
