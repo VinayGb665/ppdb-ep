@@ -306,7 +306,7 @@ let services ={
 			var query = {};
 		}
 		expModel.find(query,
-			{_id:0,filename:1},
+			{_id:0},
 			(err,results) => {
 				if(err) res.send(err)
 				else {
