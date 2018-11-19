@@ -62,7 +62,7 @@ let services ={
 	},
 	login : (req,res) =>{
 		var data = req.body;
-		console.log(data);
+		console.log(req);
 		if(!data.usn || !data.password){
 		var hash = services.md5(data.password+data.usn.toString().substr(data.usn.length -3));
 
