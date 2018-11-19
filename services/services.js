@@ -284,8 +284,8 @@ let services ={
 		 if(!err) {	
 			 jsonexport(results,{rowDelimiter: ','}, (err,csv) => {
 				 if(!err) {
-					res.setHeader('Content-Type', 'text/csv');
-					res.send(csv);
+					//res.setHeader('Content-Type', 'text/csv');
+					res.download(csv);
 				}
 				 else res.send(err);
 			 })
