@@ -282,6 +282,7 @@ let services ={
 	},
 	updateprofile : (req,res) => {
 		//console.log(req.files);
+		if(req.body.files.resume){
 		var newfname = services.md5(req.files.resume.originalFilename+req.usn)
 		fs.writeFile(newfname+".pdf", req.files.resume,function(err){
 			if(err) throw new Error(err);
@@ -300,8 +301,20 @@ let services ={
 			
 			}
 			else res.send(err);
-			
+		
 		})
+	}
+		else{
+			var formd = req.body;
+			
+			formModel.findOneAndUpdate({usn:req.body.usn},formd,{upsert: false, new: true, runValidators: true},(err,results) =>{
+				if(!err) { 
+						res.send('True'); 
+				}
+				else res.send(err);
+			});
+		
+		}
 
 	},
 	getexpdata : (req,res) => {
