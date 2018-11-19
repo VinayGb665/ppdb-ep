@@ -271,14 +271,20 @@ let services ={
 	getformresponses : (req,res) => {
 		sess =req.session;
 	//	if(sess.isAdmin){
-			formrespmodel.findOne({"company":req.body.company}, (err,results) => {
-				if(!err) res.send(results)
-				else res.send(err)
-			});
+			// formrespmodel.findOne({"company":req.body.company}, (err,results) => {
+			// 	if(!err) res.send(results)
+			// 	else res.send(err)
+			// });
 	//	}
 	//	else{
 	//		res.send(401);
 	//	}
+	formrespmodel.aggregate([{ $lookup : { from :'formData', localField:'usn', foreignField:'usn',as:'abs' } },{$project :{ "usn":0 }},{
+		$replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$abs", 0 ] }, "$$ROOT" ] } }
+	 },{$match :{"abs.company":req.query.company}},{ $project: { abs: 0 } }],(err,results) => {
+		 if(!err) res.send("True")
+		 else res.send(err);
+	 })
 	},
 	updateprofile : (req,res) => {
 		//console.log(req.files);
