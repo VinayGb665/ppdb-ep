@@ -280,7 +280,7 @@ let services ={
 	//	}
 	formrespmodel.aggregate([{$match:{"company":req.query.company}},{ $lookup : { from :'formData', localField:'usn', foreignField:'usn',as:'abs' } },{$project :{ "usn":0 }},{
 		$replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$abs", 0 ] }, "$$ROOT" ] } }
-	 },{ $project: { abs: 0 } }],(err,results) => {
+	 },{ $project: { abs: 0 ,_id:0} }],(err,results) => {
 		 if(!err) {
 			 jsonexport(results, (err,csv) => {
 				 if(!err) res.send(csv)
