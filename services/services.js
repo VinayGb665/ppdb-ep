@@ -62,6 +62,7 @@ let services ={
 	},
 	login : (req,res) =>{
 		var data = req.body;
+		console.log(data);
 		if(!data.usn || !data.password){
 		var hash = services.md5(data.password+data.usn.toString().substr(data.usn.length -3));
 
@@ -253,7 +254,7 @@ let services ={
 		var doc = new formrespmodel(req.body);
 		doc.save((err,results) => {
 			if(!err) {
-				formModel.updateOne({usn:doc.usn},{$push:{registered:doc.company}},(err,result) => {
+				formModel.updateOne({usn:doc.usn},{$push:{registered:[doc.company]}},(err,result) => {
 					if(!err) res.send({"status":"success"});
 					else res.send(err);
 					
