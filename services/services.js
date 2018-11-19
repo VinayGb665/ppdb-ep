@@ -282,7 +282,7 @@ let services ={
 		$replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$abs", 0 ] }, "$$ROOT" ] } }
 	 },{ $project: { abs: 0 ,_id:0} }],(err,results) => {
 		 if(!err) {	
-			 jsonexport(results,{rowDelimiter: '\n'}, (err,csv) => {
+			 jsonexport(results,{rowDelimiter: ','}, (err,csv) => {
 				 if(!err) res.send(csv)
 				 else res.send(err);
 			 })
