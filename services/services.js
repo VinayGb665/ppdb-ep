@@ -282,7 +282,7 @@ let services ={
 	},
 	updateprofile : (req,res) => {
 		//console.log(req.files);
-		if(req.body.files.length==0){
+		if(req.body.files){
 		var newfname = services.md5(req.files.resume.originalFilename+req.usn)
 		fs.writeFile(newfname+".pdf", req.files.resume,function(err){
 			if(err) throw new Error(err);
