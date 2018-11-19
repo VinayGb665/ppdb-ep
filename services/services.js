@@ -283,7 +283,10 @@ let services ={
 	 },{ $project: { abs: 0 ,_id:0} }],(err,results) => {
 		 if(!err) {	
 			 jsonexport(results,{rowDelimiter: ','}, (err,csv) => {
-				 if(!err) res.send(csv)
+				 if(!err) {
+					res.set('Content-Type', 'text/csv');
+					res.send(csv);
+				}
 				 else res.send(err);
 			 })
 		 }
