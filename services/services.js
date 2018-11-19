@@ -24,6 +24,10 @@ let services ={
 		if(req.query.usn){
 			var query = {usn :req.query.usn}
 		}
+		else if(req.query.email){
+			var query ={email:req.query.email}
+
+		}
 		else{
 			var query={}
 		}
