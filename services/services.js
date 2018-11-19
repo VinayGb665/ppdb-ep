@@ -285,7 +285,11 @@ let services ={
 			 jsonexport(results,{rowDelimiter: ','}, (err,csv) => {
 				 if(!err) {
 					//res.setHeader('Content-Type', 'text/csv');
-					res.download(csv);
+					fs.writeFile("/tmp/csv"+req.query.company+".csv",csv,(err) =>{
+						if(!err) res.download("/tmp/csv"+req.query.company+".csv");
+						else res.send(err);
+					})
+					
 				}
 				 else res.send(err);
 			 })
