@@ -65,14 +65,10 @@ let services ={
 	},
 	login : (req,res) =>{
 		var data = req.body;
-		console.log(req.body);
 		if(data.usn && data.password){
 		var hash = services.md5(data.password+data.usn.toString().substr(data.usn.length -3));
 
 		stuModel.findOne({"usn":data.usn},function(err,results){
-			res.setHeader("Access-Control-Allow-Origin", "*");
-  			res.setHeader('Access-Control-Allow-Methods', '*');
-  			res.setHeader("Access-Control-Allow-Headers", "*");
  			if(err) res.send(err);
 			if(results) {
 				if(results.password==hash){
@@ -190,7 +186,7 @@ let services ={
 	updateStudentStatus : (req,res) => {
 		var data = req.body;
 		sess = req.session;
-		if(sess.isAdmin){
+		//if(sess.isAdmin){
 			
 			if(data.usn ) {
 				formModel.update({usn:data.usn.toString().toUpperCase()},{$set:{company:data.company,fte_status:data.FTE,intern_status:data.Internship}},{upsert:true},function(err){
@@ -198,10 +194,10 @@ let services ={
 					else res.send({"status":err});
 				})
 			}
-		}
-		else{
-			res.send(401)
-		}
+//		}
+//		else{
+//			res.send(401)
+	//	}
 	},
 	listemployeees : (req,res) => {
 		empmodel.find({},{_id:0,username:1},(err,results) => {
