@@ -148,7 +148,7 @@ let services ={
 		console.log(req.body)
 		if(usn){
 			formModel.findOneAndUpdate({usn:usn},{$push:{my_nots:req.body.notification}}, (err,results) => {
-				if(!err) res.send(err);
+				if(err) res.send(err);
 				else res.send(True);
 			})
 		}
