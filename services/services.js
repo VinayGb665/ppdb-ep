@@ -143,6 +143,16 @@ let services ={
 		res.send(services.testAsync(data));	
 
 	},
+	pushnotification : (req,res) => {
+		var usn =req.body.usn;
+		if(usn){
+			formModel.findOneAndUpdate({usn:usn},{$push:{my_nots:req.body.notification}}, (err,results) => {
+				if(!err) res.send(err);
+				else res.send(True);
+			})
+		}
+	}
+	,
 	testAsync: (res,files) => {
 		
 		async.map(files, fs.readFile, function (err, data) {
