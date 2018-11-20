@@ -155,6 +155,14 @@ let services ={
 		else{
 			res.send(400)
 		}
+	},
+	getmynotification : (req,res) => {
+		if(req.query.usn){
+			formModel.find({usn:req.query.usn},{_id:0,my_nots:1}, (err,results) =>{
+				if(err) res.send(err)
+				else res.send(results);
+			} )
+		}
 	}
 	,
 	testAsync: (res,files) => {

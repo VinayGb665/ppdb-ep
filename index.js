@@ -178,6 +178,13 @@ express()
     res.setHeader("Access-Control-Allow-Headers", "*");     
     services.pushnotification(req,res); 
    })
+   .get('/getnotifications', (req,res) => {
+     
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader("Access-Control-Allow-Headers", "*");     
+     services.getmynotification(req,res);
+   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
